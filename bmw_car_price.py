@@ -2,7 +2,9 @@
 import pandas as pd
 import streamlit as st
 import joblib
-import sklearn
+from sklearn.preprocessing import  RobustScaler, OneHotEncoder
+from category_encoders import  BinaryEncoder
+from catboost import  CatBoostRegressor
 
 st.set_page_config(layout= 'wide', page_title='BMW Cars Price Deployment')
 
@@ -31,3 +33,4 @@ if st.button('Predict Car Price'):
     new_data = pd.DataFrame(columns= df.columns.drop('price'), data= [[model, year, transmission, mileage, fuelType, tax, mpg, engineSize]])
 
     st.write('Car Price :', ml_model.predict(new_data).round(2)[0])
+
